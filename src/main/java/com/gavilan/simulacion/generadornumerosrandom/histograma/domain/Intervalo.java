@@ -1,10 +1,10 @@
 package com.gavilan.simulacion.generadornumerosrandom.histograma.domain;
 
 public class Intervalo {
-    private int intervalo;
-    private float inferior;
-    private float superior;
-    private float marcaClase;
+    private final int intervalo;
+    private final float inferior;
+    private final float superior;
+    private final float marcaClase;
     private int frecuencia;
     private float proporcion;
     private int frecuencaAcumulada;
