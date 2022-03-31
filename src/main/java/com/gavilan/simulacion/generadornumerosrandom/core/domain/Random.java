@@ -2,19 +2,19 @@ package com.gavilan.simulacion.generadornumerosrandom.core.domain;
 
 public class Random {
 
-    private final double seed;
+    private final long seed;
     private final float value;
 
-    private Random(double seed, float value) {
+    private Random(long seed, float value) {
         this.seed = seed;
         this.value = value;
     }
 
-    public static Random of(double seed, float value) {
+    public static Random of(long seed, float value) {
         return new Random(seed, value);
     }
 
-    public static Random of(double seed) {
+    public static Random of(long seed) {
         return new Random(seed, -1F);
     }
 
@@ -22,7 +22,7 @@ public class Random {
         return this.value;
     }
 
-    public double seed() {
+    public long seed() {
         return this.seed;
     }
 

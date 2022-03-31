@@ -2,10 +2,10 @@ package com.gavilan.simulacion.generadornumerosrandom.generador.domain;
 
 public class Iteracion {
     private final int iteracion;
-    private final String xi;
+    private final long xi;
     private final String random;
 
-    public Iteracion(int iteracion, String xi, String random) {
+    public Iteracion(int iteracion, long xi, String random) {
         this.iteracion = iteracion;
         this.xi = xi;
         this.random = random;
@@ -15,7 +15,7 @@ public class Iteracion {
         return iteracion;
     }
 
-    public String getXi() {
+    public long getXi() {
         return xi;
     }
 

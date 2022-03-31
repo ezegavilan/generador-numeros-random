@@ -7,7 +7,7 @@ public class GeneradorCustom extends Generador {
     private final int incremet;
 
     public GeneradorCustom(int mod, int multiplier, int incremet) {
-        this(7, mod, multiplier, incremet);
+        this(7L, mod, multiplier, incremet);
     }
 
     public GeneradorCustom(long seed, int mod, int multiplier, int incremet) {
@@ -20,8 +20,8 @@ public class GeneradorCustom extends Generador {
 
     @Override
     public Random next() {
-        double x1 = (multiplier * this.currentRandom.seed() + incremet) % mod;
-        float rnd = (float) (x1/mod);
+        long x1 = (multiplier * this.currentRandom.seed() + incremet) % mod;
+        float rnd = ((float) x1/mod);
 
         this.i++;
         this.currentRandom = Random.of(x1, rnd);

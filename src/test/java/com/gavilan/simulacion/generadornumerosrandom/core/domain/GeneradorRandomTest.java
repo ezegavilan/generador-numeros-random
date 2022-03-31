@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GeneradorRandomTest {
 
-    final int SEED = 1;
+    final long SEED = 1;
     final int MOD = 9;
     final int MULTIPLICADOR = 2;
     final int INCREMENTO = 0;
