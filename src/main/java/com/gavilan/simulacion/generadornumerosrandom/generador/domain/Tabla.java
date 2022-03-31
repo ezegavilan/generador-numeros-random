@@ -8,15 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tabla {
-    private final int DEFAULT_N = 20;
-    private List<Iteracion> iteraciones;
+    private final List<Iteracion> iteraciones;
 
     public Tabla() {
         this.iteraciones = new ArrayList<>();
     }
 
     public void generarTabla(GeneradorCustom generador) {
-        this.generarTabla(DEFAULT_N, generador);
+        this.generarTabla(20, generador);
+    }
+
+    public List<Iteracion> getIteraciones() {
+        return iteraciones;
     }
 
     public void generarTabla(int n, Generador generador) {
@@ -37,7 +40,7 @@ public class Tabla {
         }
     }
 
-    public void agregarIteracion(Iteracion iteracion) {
+    private void agregarIteracion(Iteracion iteracion) {
         this.iteraciones.add(iteracion);
     }
 
