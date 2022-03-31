@@ -1,4 +1,4 @@
-package com.gavilan.simulacion.generadornumerosrandom.generador.apirest.model;
+package com.gavilan.simulacion.generadornumerosrandom.shared.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

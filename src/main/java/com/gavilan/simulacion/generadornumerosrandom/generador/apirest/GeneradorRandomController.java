@@ -1,8 +1,8 @@
 package com.gavilan.simulacion.generadornumerosrandom.generador.apirest;
 
-import com.gavilan.simulacion.generadornumerosrandom.generador.apirest.model.GenerarRandomRequest;
 import com.gavilan.simulacion.generadornumerosrandom.generador.apirest.model.TablaDto;
 import com.gavilan.simulacion.generadornumerosrandom.generador.service.in.GenerarRandomUseCase;
+import com.gavilan.simulacion.generadornumerosrandom.shared.model.GenerarRandomRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
