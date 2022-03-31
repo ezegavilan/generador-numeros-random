@@ -1,8 +1,8 @@
-package com.gavilan.simulacion.generadornumerosrandom.generador.domain;
+package com.gavilan.simulacion.generadornumerosrandom.core.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GeneradorRandomTest {
 
@@ -13,7 +13,7 @@ public class GeneradorRandomTest {
 
     @Test
     public void generarRandomPobre() {
-        Generador generador = new Generador(SEED, MOD, MULTIPLICADOR, INCREMENTO);
+        GeneradorCustom generador = new GeneradorCustom(SEED, MOD, MULTIPLICADOR, INCREMENTO);
         Random nextRnd = generador.next();
         assertEquals(0.2222222238779068, nextRnd.value());
         assertEquals(1, generador.getOriginalSeed());
@@ -21,7 +21,7 @@ public class GeneradorRandomTest {
 
     @Test
     public void generarRandomDefaultSeedDosIteraciones() {
-        Generador generador = new Generador(MOD, MULTIPLICADOR, INCREMENTO);
+        GeneradorCustom generador = new GeneradorCustom(MOD, MULTIPLICADOR, INCREMENTO);
 
         generador.next();
         generador.next();
@@ -34,7 +34,7 @@ public class GeneradorRandomTest {
     public void generarSeisRandomConParametrosCustom() {
         // Dado un ejercicio hecho en papel, vamos a probar que pasa el test siguiente
         // Datos: seed: 3, mod: 32, mult: 13, inc: 17
-        Generador generador = new Generador(3, 32, 13, 17);
+        GeneradorCustom generador = new GeneradorCustom(3, 32, 13, 17);
 
         Random primero = generador.next();
         Random segundo = generador.next();
@@ -53,7 +53,7 @@ public class GeneradorRandomTest {
 
     @Test
     public void generadorConPeriodo1() {
-        Generador generador = new Generador(7, 8, 43, 4);
+        GeneradorCustom generador = new GeneradorCustom(7, 8, 43, 4);
         Random primero = generador.next();
         generador.next();
         Random tercero = generador.next();
