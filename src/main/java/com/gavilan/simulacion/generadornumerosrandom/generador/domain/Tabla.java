@@ -18,26 +18,25 @@ public class Tabla {
         this.generarTabla(20, generador);
     }
 
-    public List<Iteracion> getIteraciones() {
-        return iteraciones;
-    }
-
     public void generarTabla(int n, Generador generador) {
         // En la tabla necesitamos sólo una precisión de 4 decimales, no el float completo.
         //String random = String.format("%.4f", 0.45568797F);
 
-        int it;
-        String randomString;
-        long x1;
         Random random;
+        float randomValue;
+        long x1;
+        int it;
         for (int i = 0; i < n; i++) {
             random = generador.next();
-            randomString = String.format("%.4f", random.value());
+            randomValue = random.value();
             x1 = random.seed();
             it = generador.getIteration();
-
-            agregarIteracion(new Iteracion(it, x1, randomString));
+            agregarIteracion(new Iteracion(it, x1, randomValue));
         }
+    }
+
+    public List<Iteracion> getIteraciones() {
+        return iteraciones;
     }
 
     private void agregarIteracion(Iteracion iteracion) {

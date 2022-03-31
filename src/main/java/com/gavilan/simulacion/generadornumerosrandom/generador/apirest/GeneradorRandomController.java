@@ -1,7 +1,7 @@
 package com.gavilan.simulacion.generadornumerosrandom.generador.apirest;
 
 import com.gavilan.simulacion.generadornumerosrandom.generador.apirest.model.GenerarRandomRequest;
-import com.gavilan.simulacion.generadornumerosrandom.generador.apirest.model.TablaResponse;
+import com.gavilan.simulacion.generadornumerosrandom.generador.apirest.model.TablaDto;
 import com.gavilan.simulacion.generadornumerosrandom.generador.service.in.GenerarRandomUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,10 +21,10 @@ public class GeneradorRandomController {
     private final GenerarRandomUseCase generarRandomUseCase;
 
     @GetMapping("/generador/custom")
-    public ResponseEntity<Map<String, TablaResponse>> generarTablaRandom(@RequestBody GenerarRandomRequest generarRandomRequest) {
-        Map<String, TablaResponse> response = new HashMap<>();
+    public ResponseEntity<Map<String, TablaDto>> generarTablaRandom(@RequestBody GenerarRandomRequest generarRandomRequest) {
+        Map<String, TablaDto> response = new HashMap<>();
 
-        TablaResponse tabla = this.generarRandomUseCase
+        TablaDto tabla = this.generarRandomUseCase
                 .generarTablaRandom(generarRandomRequest.getN(), generarRandomRequest.getSeed(), generarRandomRequest.getMod(), generarRandomRequest.getMultiplicador(), generarRandomRequest.getIncremento());
 
         response.put("tabla", tabla);
@@ -32,10 +32,10 @@ public class GeneradorRandomController {
     }
 
     @GetMapping("/generador/lenguaje")
-    public ResponseEntity<Map<String, TablaResponse>> generarTablaRandomLenguaje(@RequestBody GenerarRandomRequest generarRandomRequest) {
-        Map<String, TablaResponse> response = new HashMap<>();
+    public ResponseEntity<Map<String, TablaDto>> generarTablaRandomLenguaje(@RequestBody GenerarRandomRequest generarRandomRequest) {
+        Map<String, TablaDto> response = new HashMap<>();
 
-        TablaResponse tabla = this.generarRandomUseCase.generarTablaRandom(generarRandomRequest.getN());
+        TablaDto tabla = this.generarRandomUseCase.generarTablaRandom(generarRandomRequest.getN());
 
         response.put("tabla", tabla);
         return new ResponseEntity<>(response, HttpStatus.OK);

@@ -1,6 +1,5 @@
 package com.gavilan.simulacion.generadornumerosrandom.generador.apirest.model;
 
-import com.gavilan.simulacion.generadornumerosrandom.generador.domain.Iteracion;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TablaResponse {
-    private List<Iteracion> iteraciones;
+public class TablaDto {
+    private List<IteracionDto> iteraciones;
 
 }
