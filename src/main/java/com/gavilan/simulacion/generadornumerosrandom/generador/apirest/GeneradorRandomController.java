@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("{*}")
+@CrossOrigin(origins = "*")
 @AllArgsConstructor
 public class GeneradorRandomController {
     private final GenerarRandomUseCase generarRandomUseCase;

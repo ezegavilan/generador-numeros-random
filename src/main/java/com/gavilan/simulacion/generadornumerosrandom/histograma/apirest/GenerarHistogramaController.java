@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin("{*}")
+@CrossOrigin(origins = "*")
 @AllArgsConstructor
 public class GenerarHistogramaController {
     private final CrearHistogramaUseCase crearHistogramaUseCase;
