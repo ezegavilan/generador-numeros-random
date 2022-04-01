@@ -37,7 +37,7 @@ public class CreadorHistogramaService implements CrearHistogramaUseCase {
                 .marcaClase(String.format("%.4f", intervalo.getMarcaClase()))
                 .frecuencia(String.valueOf(intervalo.getFrecuencia()))
                 .proporcion(String.format("%.4f", intervalo.getProporcion()))
-                .frecuencaAcumulada(String.valueOf(intervalo.getFrecuencaAcumulada()))
+                .frecuenciaAcumulada(String.valueOf(intervalo.getFrecuenciaAcumulada()))
                 .proporcionAcumulada(String.format("%.4f", intervalo.getProporcionAcumulada()))
                 .build();
     }

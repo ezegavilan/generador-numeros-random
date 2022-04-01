@@ -28,14 +28,14 @@ class HistogramaTest {
         int indexUltimoIntervalo = histograma.getIntervalos().size() - 1;
         Intervalo ultimoIntervalo = histograma.getIntervalos().get(indexUltimoIntervalo);
 
-        assertEquals(10, ultimoIntervalo.getFrecuencaAcumulada());
+        assertEquals(10, ultimoIntervalo.getFrecuenciaAcumulada());
     }
 
     @Test
     public void primerFrecuenciaIgualPrimerFrecuenciaAcumuladaTest() {
         Intervalo primerIntervalo = histograma.getIntervalos().get(0);
 
-        assertEquals(primerIntervalo.getFrecuencia(), primerIntervalo.getFrecuencaAcumulada());
+        assertEquals(primerIntervalo.getFrecuencia(), primerIntervalo.getFrecuenciaAcumulada());
     }
 
     @Test

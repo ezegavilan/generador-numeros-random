@@ -7,7 +7,7 @@ public class Intervalo {
     private final float marcaClase;
     private int frecuencia;
     private float proporcion;
-    private int frecuencaAcumulada;
+    private int frecuenciaAcumulada;
     private float proporcionAcumulada;
 
     public Intervalo(int intervalo, float inferior, float superior, float marcaClase) {
@@ -17,7 +17,7 @@ public class Intervalo {
         this.marcaClase = marcaClase;
         this.frecuencia = 0;
         this.proporcion = 0f;
-        this.frecuencaAcumulada = 0;
+        this.frecuenciaAcumulada = 0;
         this.proporcionAcumulada = 0f;
     }
 
@@ -30,7 +30,7 @@ public class Intervalo {
     }
 
     public void registrarFrecuenciaAcumulada(int frecuencaAcumulada) {
-        this.frecuencaAcumulada = frecuencaAcumulada;
+        this.frecuenciaAcumulada = frecuencaAcumulada;
     }
 
     public void registrarProporcionAcumulada(float proporcionAcumulada) {
@@ -62,8 +62,8 @@ public class Intervalo {
         return proporcion;
     }
 
-    public int getFrecuencaAcumulada() {
-        return frecuencaAcumulada;
+    public int getFrecuenciaAcumulada() {
+        return frecuenciaAcumulada;
     }
 
     public float getProporcionAcumulada() {
@@ -79,7 +79,7 @@ public class Intervalo {
                 ", marcaClase=" + marcaClase +
                 ", frecuencia=" + frecuencia +
                 ", proporcion=" + proporcion +
-                ", frecuencaAcumulada=" + frecuencaAcumulada +
+                ", frecuencaAcumulada=" + frecuenciaAcumulada +
                 ", proporcionAcumulada=" + proporcionAcumulada +
                 '}';
     }
