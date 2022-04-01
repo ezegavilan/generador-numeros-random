@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  generador-apirest:
+    image: neritoo/generador-numeros-random-apirest:latest
+    ports:
+      - "8080:8080"
+    restart: on-failure
+
