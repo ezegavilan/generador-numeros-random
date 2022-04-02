@@ -19,12 +19,22 @@ public class GenerarHistogramaController {
     private final CrearHistogramaUseCase crearHistogramaUseCase;
 
 
-    @PostMapping("/histograma")
+    @PostMapping("/histograma/custom")
     public ResponseEntity<Map<String, HistogramaDto>> crearHistogramaDeFrecuencia(@RequestBody GenerarRandomRequest req) {
         Map<String, HistogramaDto> response = new HashMap<>();
 
         HistogramaDto histograma = this.crearHistogramaUseCase
                 .generarHistogramaFrecuencia(req.getN(), req.getSeed(), req.getMod(), req.getMultiplicador(), req.getIncremento());
+
+        response.put("histograma", histograma);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/histograma/lenguaje")
+    public ResponseEntity<Map<String, HistogramaDto>> crearHistogramaConGeneradorLenguaje(@RequestBody GenerarRandomRequest req) {
+        Map<String, HistogramaDto> response = new HashMap<>();
+
+        HistogramaDto histograma = this.crearHistogramaUseCase.generarHistogramaFrecuenciaGeneradorLenguaje(req.getN());
 
         response.put("histograma", histograma);
         return new ResponseEntity<>(response, HttpStatus.OK);

@@ -8,4 +8,6 @@ import com.gavilan.simulacion.generadornumerosrandom.histograma.apirest.model.Hi
  */
 public interface CrearHistogramaUseCase {
     HistogramaDto generarHistogramaFrecuencia(int n, long seed, int mod, int multiplicador, int incremento);
+
+    HistogramaDto generarHistogramaFrecuenciaGeneradorLenguaje(int n);
 }
