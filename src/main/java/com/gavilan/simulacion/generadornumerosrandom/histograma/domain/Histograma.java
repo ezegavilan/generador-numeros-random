@@ -8,19 +8,24 @@ import java.util.List;
 
 public class Histograma {
     private List<Intervalo> intervalos;
+    private final int cantidadIntervalos;
 
-    public Histograma() {
+    public Histograma(int cantidadIntervalos) {
         this.intervalos = new ArrayList<>();
+        this.cantidadIntervalos = cantidadIntervalos;
     }
 
-    public void generarHistograma(int cantidadIntervalos, Tabla tablaRandoms) {
-        crearIntervalos(cantidadIntervalos);
+    public void generarHistograma(Tabla tablaRandoms) {
+        int n = tablaRandoms.getIteraciones().size();
+        crearIntervalos(cantidadIntervalos, n);
 
         cargarObservaciones(tablaRandoms.getIteraciones());
     }
 
-    private void crearIntervalos(int cantidadIntervalos) {
+    private void crearIntervalos(int cantidadIntervalos, int n) {
         float tamIntervalo = 1F/cantidadIntervalos;
+        int frecuenciaEsperada = this.calcularFrecuenciaEsperada(n, cantidadIntervalos);
+
         Intervalo intervaloNuevo;
         int intervalo;
         float inf, sup, marcaClase;
@@ -32,7 +37,7 @@ public class Histograma {
             if (intervalo == 1) {
                 marcaClase = calcularMarcaClase(inf, sup);
 
-                intervaloNuevo = new Intervalo(intervalo, inf, sup, marcaClase);
+                intervaloNuevo = new Intervalo(intervalo, inf, sup, marcaClase, frecuenciaEsperada);
                 intervalos.add(intervaloNuevo);
                 continue;
             }
@@ -41,10 +46,14 @@ public class Histograma {
             sup = calcularLimiteSuperior(tamIntervalo, sup);
             marcaClase = calcularMarcaClase(inf ,sup);
 
-            intervaloNuevo = new Intervalo(intervalo, inf, sup, marcaClase);
+            intervaloNuevo = new Intervalo(intervalo, inf, sup, marcaClase, frecuenciaEsperada);
 
             intervalos.add(intervaloNuevo);
         }
+    }
+
+    private int calcularFrecuenciaEsperada(int n, int k) {
+        return n/k;
     }
 
     private void cargarObservaciones(List<Iteracion> tabla) {
@@ -78,6 +87,10 @@ public class Histograma {
 
     public List<Intervalo> getIntervalos() {
         return intervalos;
+    }
+
+    public int getCantidadIntervalos() {
+        return cantidadIntervalos;
     }
 
     private float calcularMarcaClase(float inf, float sup) {

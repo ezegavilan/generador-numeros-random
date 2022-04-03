@@ -22,8 +22,8 @@ public class CreadorHistogramaService implements CrearHistogramaUseCase {
         Tabla tabla = new Tabla();
         tabla.generarTabla(n, generador);
 
-        Histograma histograma = new Histograma();
-        histograma.generarHistograma(INTERVALOS_DEFAULT, tabla);
+        Histograma histograma = new Histograma(INTERVALOS_DEFAULT);
+        histograma.generarHistograma(tabla);
 
         return HistogramaDto.builder()
                 .intervalos(histograma.getIntervalos().stream().map(this::mapToDto).collect(Collectors.toList())).build();
@@ -35,6 +35,7 @@ public class CreadorHistogramaService implements CrearHistogramaUseCase {
                 .inferior(String.format("%.4f", intervalo.getInferior()))
                 .superior(String.format("%.4f", intervalo.getSuperior()))
                 .marcaClase(String.format("%.4f", intervalo.getMarcaClase()))
+                .frecuenciaEsperada(String.valueOf(intervalo.getFrecuenciaEsperada()))
                 .frecuencia(String.valueOf(intervalo.getFrecuencia()))
                 .proporcion(String.format("%.4f", intervalo.getProporcion()))
                 .frecuenciaAcumulada(String.valueOf(intervalo.getFrecuenciaAcumulada()))

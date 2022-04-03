@@ -19,8 +19,8 @@ class HistogramaTest {
         generador = new GeneradorCustom(13, 32, 13, 17);
         tabla = new Tabla();
         tabla.generarTabla(10, generador);
-        histograma = new Histograma();
-        histograma.generarHistograma(5, tabla);
+        histograma = new Histograma(5);
+        histograma.generarHistograma(tabla);
     }
 
     @Test
