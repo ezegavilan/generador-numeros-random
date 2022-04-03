@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ChiCuadradoTest {
 
@@ -30,5 +31,17 @@ public class ChiCuadradoTest {
         histogramaChiCuadrado.generarHistogramaChiCuadrado(histograma);
 
         assertEquals(0.33333334f, histogramaChiCuadrado.getChiCuadradoCalculado());
+    }
+
+    @Test
+    public void pasaPruebaBondadTest() {
+        HistogramaChiCuadrado histogramaChiCuadrado = new HistogramaChiCuadrado();
+        histogramaChiCuadrado.generarHistogramaChiCuadrado(histograma);
+
+        float chiCalculado = histogramaChiCuadrado.getChiCuadradoCalculado();
+        int gradosLibertad = histogramaChiCuadrado.calcularGradosLibertad();
+
+        PruebaBondadChiCuadrado pruebaBondadChiCuadrado = new PruebaBondadChiCuadrado();
+        assertTrue(pruebaBondadChiCuadrado.validarHipotesisUniforme(chiCalculado, gradosLibertad));
     }
 }

@@ -48,7 +48,7 @@ public class HistogramaChiCuadrado {
         return intervalos.get(ultimoIndice).getChiCuadradoAcumulado();
     }
 
-    public int calcularGradosLiberatd() {
+    public int calcularGradosLibertad() {
         return this.cantidadIntervalos - 1;
     }
 
