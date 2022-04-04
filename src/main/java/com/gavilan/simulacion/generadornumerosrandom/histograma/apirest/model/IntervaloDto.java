@@ -14,6 +14,7 @@ public class IntervaloDto {
     private String inferior;
     private String superior;
     private String marcaClase;
+    private String frecuenciaEsperada;
     private String frecuencia;
     private String proporcion;
     private String frecuenciaAcumulada;

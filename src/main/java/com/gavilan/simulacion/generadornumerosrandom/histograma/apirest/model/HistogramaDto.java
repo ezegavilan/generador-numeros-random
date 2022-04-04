@@ -13,5 +13,6 @@ import java.util.List;
 @Builder
 public class HistogramaDto {
     private List<IntervaloDto> intervalos;
+    private boolean pruebaBondadChiCuadrado;
 
 }

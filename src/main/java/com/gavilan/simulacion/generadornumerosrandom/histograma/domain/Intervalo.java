@@ -5,16 +5,18 @@ public class Intervalo {
     private final float inferior;
     private final float superior;
     private final float marcaClase;
+    private int frecuenciaEsperada;
     private int frecuencia;
     private float proporcion;
     private int frecuenciaAcumulada;
     private float proporcionAcumulada;
 
-    public Intervalo(int intervalo, float inferior, float superior, float marcaClase) {
+    public Intervalo(int intervalo, float inferior, float superior, float marcaClase, int frecuenciaEsperada) {
         this.intervalo = intervalo;
         this.inferior = inferior;
         this.superior = superior;
         this.marcaClase = marcaClase;
+        this.frecuenciaEsperada = frecuenciaEsperada;
         this.frecuencia = 0;
         this.proporcion = 0f;
         this.frecuenciaAcumulada = 0;
@@ -54,6 +56,10 @@ public class Intervalo {
         return marcaClase;
     }
 
+    public int getFrecuenciaEsperada() {
+        return this.frecuenciaEsperada;
+    }
+
     public int getFrecuencia() {
         return frecuencia;
     }
@@ -77,9 +83,10 @@ public class Intervalo {
                 ", inferior=" + inferior +
                 ", superior=" + superior +
                 ", marcaClase=" + marcaClase +
+                ", frecuenciaEsperada=" + frecuenciaEsperada +
                 ", frecuencia=" + frecuencia +
                 ", proporcion=" + proporcion +
-                ", frecuencaAcumulada=" + frecuenciaAcumulada +
+                ", frecuenciaAcumulada=" + frecuenciaAcumulada +
                 ", proporcionAcumulada=" + proporcionAcumulada +
                 '}';
     }
