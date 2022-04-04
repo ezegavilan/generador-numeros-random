@@ -3,6 +3,7 @@ package com.gavilan.simulacion.generadornumerosrandom.histograma.service;
 import com.gavilan.simulacion.generadornumerosrandom.chicuadrado.service.in.PruebaBondadChiCuadradoUseCase;
 import com.gavilan.simulacion.generadornumerosrandom.core.domain.Generador;
 import com.gavilan.simulacion.generadornumerosrandom.core.domain.GeneradorCustom;
+import com.gavilan.simulacion.generadornumerosrandom.core.domain.GeneradorLenguaje;
 import com.gavilan.simulacion.generadornumerosrandom.generador.domain.Tabla;
 import com.gavilan.simulacion.generadornumerosrandom.histograma.apirest.model.HistogramaDto;
 import com.gavilan.simulacion.generadornumerosrandom.histograma.apirest.model.IntervaloDto;
@@ -27,18 +28,13 @@ public class CreadorHistogramaService implements CrearHistogramaUseCase {
     @Override
     public HistogramaDto generarHistogramaFrecuencia(int n, long seed, int mod, int multiplicador, int incremento) {
         Generador generador = new GeneradorCustom(seed, mod, multiplicador, incremento);
-        Tabla tabla = new Tabla();
-        tabla.generarTabla(n, generador);
+        return crearHistograma(INTERVALOS_DEFAULT, n, generador);
+    }
 
-        Histograma histograma = new Histograma(INTERVALOS_DEFAULT);
-        histograma.generarHistograma(tabla);
-
-        boolean resultadoPruebaBondadChiCuadrado = this.realizarPruebaChiCuadrado(histograma);
-
-        return HistogramaDto.builder()
-                .intervalos(histograma.getIntervalos().stream().map(this::mapToDto).collect(Collectors.toList()))
-                .pruebaBondadChiCuadrado(resultadoPruebaBondadChiCuadrado)
-                .build();
+    @Override
+    public HistogramaDto generarHistogramaFrecuenciaGeneradorLenguaje(int n) {
+        Generador generador = new GeneradorLenguaje();
+        return crearHistograma(INTERVALOS_DEFAULT, n, generador);
     }
 
     private IntervaloDto mapToDto(Intervalo intervalo) {
@@ -52,6 +48,21 @@ public class CreadorHistogramaService implements CrearHistogramaUseCase {
                 .proporcion(String.format("%.4f", intervalo.getProporcion()))
                 .frecuenciaAcumulada(String.valueOf(intervalo.getFrecuenciaAcumulada()))
                 .proporcionAcumulada(String.format("%.4f", intervalo.getProporcionAcumulada()))
+                .build();
+    }
+
+    private HistogramaDto crearHistograma(int intervalos, int n, Generador generador) {
+        Tabla tabla = new Tabla();
+        tabla.generarTabla(n, generador);
+
+        Histograma histograma = new Histograma(intervalos);
+        histograma.generarHistograma(tabla);
+
+        boolean resultadoPruebaBondadChiCuadrado = this.realizarPruebaChiCuadrado(histograma);
+
+        return HistogramaDto.builder()
+                .intervalos(histograma.getIntervalos().stream().map(this::mapToDto).collect(Collectors.toList()))
+                .pruebaBondadChiCuadrado(resultadoPruebaBondadChiCuadrado)
                 .build();
     }
 
