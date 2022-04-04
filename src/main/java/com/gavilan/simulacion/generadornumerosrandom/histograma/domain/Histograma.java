@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Histograma {
-    private List<Intervalo> intervalos;
+    private final List<Intervalo> intervalos;
     private final int cantidadIntervalos;
 
     public Histograma(int cantidadIntervalos) {

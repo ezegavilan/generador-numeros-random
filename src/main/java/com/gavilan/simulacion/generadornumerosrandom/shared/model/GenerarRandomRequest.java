@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class GenerarRandomRequest {
     private int n;
+    private int intervalos;
     private long seed;
     private int mod;
     private int multiplicador;

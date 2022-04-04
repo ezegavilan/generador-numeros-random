@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class CreadorHistogramaService implements CrearHistogramaUseCase {
     private final PruebaBondadChiCuadradoUseCase pruebaBondadChiCuadradoUseCase;
-    private final int INTERVALOS_DEFAULT = 5;
+    /*private final int INTERVALOS_DEFAULT = 5;*/
 
     @Autowired
     public CreadorHistogramaService(PruebaBondadChiCuadradoUseCase pruebaBondadChiCuadradoUseCase) {
@@ -26,15 +26,15 @@ public class CreadorHistogramaService implements CrearHistogramaUseCase {
     }
 
     @Override
-    public HistogramaDto generarHistogramaFrecuencia(int n, long seed, int mod, int multiplicador, int incremento) {
+    public HistogramaDto generarHistogramaFrecuencia(int n, int cantIntervalos, long seed, int mod, int multiplicador, int incremento) {
         Generador generador = new GeneradorCustom(seed, mod, multiplicador, incremento);
-        return crearHistograma(INTERVALOS_DEFAULT, n, generador);
+        return crearHistograma(cantIntervalos, n, generador);
     }
 
     @Override
     public HistogramaDto generarHistogramaFrecuenciaGeneradorLenguaje(int n) {
         Generador generador = new GeneradorLenguaje();
-        return crearHistograma(INTERVALOS_DEFAULT, n, generador);
+        return crearHistograma(5, n, generador);
     }
 
     private IntervaloDto mapToDto(Intervalo intervalo) {

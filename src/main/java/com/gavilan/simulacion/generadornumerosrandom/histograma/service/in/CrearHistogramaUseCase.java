@@ -7,7 +7,7 @@ import com.gavilan.simulacion.generadornumerosrandom.histograma.apirest.model.Hi
  * semilla, modulo, multiplicador e incremento, que son utilizadas para generar la tabla de números pseudoaleatorios.
  */
 public interface CrearHistogramaUseCase {
-    HistogramaDto generarHistogramaFrecuencia(int n, long seed, int mod, int multiplicador, int incremento);
+    HistogramaDto generarHistogramaFrecuencia(int n, int cantIntervalos, long seed, int mod, int multiplicador, int incremento);
 
     HistogramaDto generarHistogramaFrecuenciaGeneradorLenguaje(int n);
 }

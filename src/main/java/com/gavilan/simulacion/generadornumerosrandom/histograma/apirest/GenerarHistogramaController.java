@@ -24,7 +24,7 @@ public class GenerarHistogramaController {
         Map<String, HistogramaDto> response = new HashMap<>();
 
         HistogramaDto histograma = this.crearHistogramaUseCase
-                .generarHistogramaFrecuencia(req.getN(), req.getSeed(), req.getMod(), req.getMultiplicador(), req.getIncremento());
+                .generarHistogramaFrecuencia(req.getN(), req.getIntervalos(), req.getSeed(), req.getMod(), req.getMultiplicador(), req.getIncremento());
 
         response.put("histograma", histograma);
         return new ResponseEntity<>(response, HttpStatus.OK);
