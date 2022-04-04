@@ -1,5 +1,6 @@
 package com.gavilan.simulacion.generadornumerosrandom.histograma.service;
 
+import com.gavilan.simulacion.generadornumerosrandom.chicuadrado.service.in.PruebaBondadChiCuadradoUseCase;
 import com.gavilan.simulacion.generadornumerosrandom.core.domain.Generador;
 import com.gavilan.simulacion.generadornumerosrandom.core.domain.GeneradorCustom;
 import com.gavilan.simulacion.generadornumerosrandom.generador.domain.Tabla;
@@ -8,13 +9,20 @@ import com.gavilan.simulacion.generadornumerosrandom.histograma.apirest.model.In
 import com.gavilan.simulacion.generadornumerosrandom.histograma.domain.Histograma;
 import com.gavilan.simulacion.generadornumerosrandom.histograma.domain.Intervalo;
 import com.gavilan.simulacion.generadornumerosrandom.histograma.service.in.CrearHistogramaUseCase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
 @Service
 public class CreadorHistogramaService implements CrearHistogramaUseCase {
+    private final PruebaBondadChiCuadradoUseCase pruebaBondadChiCuadradoUseCase;
     private final int INTERVALOS_DEFAULT = 5;
+
+    @Autowired
+    public CreadorHistogramaService(PruebaBondadChiCuadradoUseCase pruebaBondadChiCuadradoUseCase) {
+        this.pruebaBondadChiCuadradoUseCase = pruebaBondadChiCuadradoUseCase;
+    }
 
     @Override
     public HistogramaDto generarHistogramaFrecuencia(int n, long seed, int mod, int multiplicador, int incremento) {
@@ -25,8 +33,12 @@ public class CreadorHistogramaService implements CrearHistogramaUseCase {
         Histograma histograma = new Histograma(INTERVALOS_DEFAULT);
         histograma.generarHistograma(tabla);
 
+        boolean resultadoPruebaBondadChiCuadrado = this.realizarPruebaChiCuadrado(histograma);
+
         return HistogramaDto.builder()
-                .intervalos(histograma.getIntervalos().stream().map(this::mapToDto).collect(Collectors.toList())).build();
+                .intervalos(histograma.getIntervalos().stream().map(this::mapToDto).collect(Collectors.toList()))
+                .pruebaBondadChiCuadrado(resultadoPruebaBondadChiCuadrado)
+                .build();
     }
 
     private IntervaloDto mapToDto(Intervalo intervalo) {
@@ -41,5 +53,9 @@ public class CreadorHistogramaService implements CrearHistogramaUseCase {
                 .frecuenciaAcumulada(String.valueOf(intervalo.getFrecuenciaAcumulada()))
                 .proporcionAcumulada(String.format("%.4f", intervalo.getProporcionAcumulada()))
                 .build();
+    }
+
+    private boolean realizarPruebaChiCuadrado(Histograma histograma) {
+        return pruebaBondadChiCuadradoUseCase.validarHipotesisDistribucionUniforme(histograma);
     }
 }
