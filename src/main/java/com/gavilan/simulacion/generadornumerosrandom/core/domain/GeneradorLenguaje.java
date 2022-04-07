@@ -11,6 +11,7 @@ public class GeneradorLenguaje extends Generador {
     @Override
     public Random next() {
         java.util.Random rndLenguaje = new java.util.Random();
+        this.i++;
         return Random.of(-1, rndLenguaje.nextFloat());
     }
 }
